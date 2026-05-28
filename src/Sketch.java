@@ -11,11 +11,12 @@ public class Sketch extends PApplet {
 
     @Override
     public void settings() {
-        size(600, 400); 
+        size(1200, 800); 
     }
 
     @Override
     public void setup() {
+        background(240, 255, 235);
 
     }
 
