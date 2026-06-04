@@ -14,6 +14,14 @@ public class Sketch extends PApplet {
     // Declaring Variables
     int x = 50;
     int y = 50;
+    int clicks = 0;
+    
+    // Declaring Stages Variables
+    int childStage = 10;
+    int pubertyStage = 30;
+    int teenStage = 60;
+    int adultStage = 100;
+
     int bunnySize = 1;
     String bunnyStage = "Baby";
 
@@ -25,13 +33,22 @@ public class Sketch extends PApplet {
 
     @Override
     public void setup() {
-        background(135, 206, 235);
 
     }
 
     @Override
     public void draw() {
+        background(135, 206, 235);
+
         drawBabyBunny();
+
+        fill(0);
+        textSize(24);
+        text("Stage:  " + bunnyStage, 50, 80);
+        text("Clicks:  " + clicks, 50, 50);
+
+
+
     }
 
 
@@ -47,6 +64,13 @@ public class Sketch extends PApplet {
         noStroke();
         ellipse(x + 490, y + 615, 6, 26);
         ellipse(x + 510, y + 615, 6, 26);
+
+
+        // Body
+        fill(255, 255, 255);
+        stroke(0);
+        strokeWeight(2);
+        ellipse(x + 500, y + 685, 55, 50);
 
         // Head
         stroke(0);
@@ -64,11 +88,6 @@ public class Sketch extends PApplet {
         fill(255, 150, 160);
         circle(x + 500, y + 652, 3);
 
-        // Body
-        fill(255, 255, 255);
-        stroke(0);
-        strokeWeight(2);
-        ellipse(x + 500, y + 685, 55, 50);
 
 
         // tail
@@ -82,8 +101,38 @@ public class Sketch extends PApplet {
     }
 
 
-
     
+
+
+    public void mousePressed() {
+        clicks++;
+
+        if (clicks < childStage) {
+           bunnyStage = "Baby";
+        }
+        
+        else if (clicks < pubertyStage) {
+            bunnyStage = "Child";
+        }
+
+        else if (clicks < teenStage) {
+            bunnyStage = "Puberty";
+        }
+        else if (clicks < adultStage) {
+            bunnyStage = "Teen";
+        }
+        else if (clicks == adultStage) {
+            bunnyStage = "Adult";
+        }
+        else {
+            clicks = 0;
+            bunnyStage = "Baby";
+
+        }
+
+
+    }
+
 
 
     
