@@ -21,11 +21,16 @@ public class Sketch extends PApplet {
     int pubertyStage = 30;
     int teenStage = 60;
     int adultStage = 100;
+    int reverseStage = 120;
 
     String bunnyStage = "Baby";
 
-    int[] stageIncrease = {1, 2, 3, 4, 5};  // Sizes
-    int currentSize = 45;
+    int stage = 0;
+
+    int clicksRequired = 10;
+
+
+
 
     @Override
     public void settings() {
@@ -41,17 +46,13 @@ public class Sketch extends PApplet {
     public void draw() {
         background(135, 206, 235);
 
-        for (int i = 0; i < stageIncrease.length; i++) {
-            if (clicks >= adultStage && i == 4) {
-                currentSize = stageIncrease[i];
-            }
-        }
 
         drawBabyBunny();
         drawChildBunny();
         drawPubertyBunny();
         drawTeenBunny();
         drawAdultBunny();
+        transformButton();
         
         fill(0);
         textSize(50);
@@ -59,6 +60,16 @@ public class Sketch extends PApplet {
 
         textSize(24);
         text("Clicks:  " + clicks, 50, 50);
+
+        // Transform text click
+        fill(255);
+        textSize(40);
+        text("Transform", 800, 530);
+
+        // Miniumum Clicks Required Text
+        fill(0);
+        textSize(20);
+        text("Clicks Required: " + clicksRequired, 750, 425);
     }
 
 
@@ -105,7 +116,7 @@ public class Sketch extends PApplet {
     
     public void drawChildBunny() {
         if (bunnyStage.equals("Child")) {
-            // Tail & Body
+            // Tail and Body
             fill(255, 255, 255); 
             stroke(0); 
             strokeWeight(2);
@@ -153,7 +164,7 @@ public class Sketch extends PApplet {
 
     public void drawPubertyBunny() {
         if (bunnyStage.equals("Puberty")) {
-            // Tail & Body
+            // Tail and Body
             fill(255, 255, 255); 
             stroke(0); 
             strokeWeight(2);
@@ -286,7 +297,7 @@ public class Sketch extends PApplet {
 
     public void drawAdultBunny() {
         if (bunnyStage.equals("Adult")) {
-            // Tail & Body
+            // Tail and Body
             fill(255, 255, 255); 
             stroke(0); 
             strokeWeight(2);
@@ -346,27 +357,52 @@ public class Sketch extends PApplet {
         }
     }
 
-    public void mousePressed() {
-        clicks++;
 
-        if (clicks < childStage) {
-           bunnyStage = "Baby";
+
+    public void mousePressed() {
+      if (mouseX >= 750 && mouseX <= 1050 && mouseY >= 450 && mouseY <= 600) {
+            
+            if (bunnyStage.equals("Baby") && clicks >= childStage) {
+                clicks -= childStage;   
+                bunnyStage = "Child";           
+                clicksRequired = pubertyStage; 
+            }
+            else if (bunnyStage.equals("Child") && clicks >= pubertyStage) {
+
+                clicks -= pubertyStage;        
+                bunnyStage = "Puberty";
+                clicksRequired = teenStage;     
+            }
+
+            else if (bunnyStage.equals("Puberty") && clicks >= teenStage) {
+
+                clicks -= teenStage;            
+                bunnyStage = "Teen";
+                clicksRequired = adultStage;    
+            }
+
+            else if (bunnyStage.equals("Teen") && clicks >= adultStage) {
+
+                clicks -= adultStage;           
+                bunnyStage = "Adult";
+                clicksRequired = reverseStage;         
+            }
+
+            else if (bunnyStage.equals("Adult")) {
+                clicks = 0;
+                bunnyStage = "Baby";
+                clicksRequired = childStage;
+            }
+            
+        } else {
+            // clicked outside the box
+            clicks++;
         }
-        else if (clicks < pubertyStage) {
-            bunnyStage = "Child";
-        }
-        else if (clicks < teenStage) {
-            bunnyStage = "Puberty";
-        }
-        else if (clicks < adultStage) {
-            bunnyStage = "Teen";
-        }
-        else if (clicks <= 120) {
-            bunnyStage = "Adult";
-        }
-        else {
-            clicks = 0;
-            bunnyStage = "Baby";
-        }
+    }
+
+    public void transformButton() {
+        fill(0);
+        rect(750, 450, 300, 150);
+
     }
 } 
