@@ -24,10 +24,13 @@ public class Sketch extends PApplet {
     int reverseStage = 120;
 
     String bunnyStage = "Baby";
+    String[] stageName = {"Baby", "Child", "Puberty", "Teen", "Adult"};
+    
 
     int stage = 0;
 
     int clicksRequired = 10;
+
 
 
 
@@ -39,6 +42,7 @@ public class Sketch extends PApplet {
 
     @Override
     public void setup() {
+        
 
     }
 
@@ -46,6 +50,7 @@ public class Sketch extends PApplet {
     public void draw() {
         background(135, 206, 235);
 
+        
 
         drawBabyBunny();
         drawChildBunny();
@@ -70,7 +75,9 @@ public class Sketch extends PApplet {
         fill(0);
         textSize(20);
         text("Clicks Required: " + clicksRequired, 750, 425);
-    }
+
+        }
+
 
 
 
@@ -193,13 +200,16 @@ public class Sketch extends PApplet {
             stroke(100); 
             strokeWeight(1);
            
+            for (int i = 0; i < 2; i++) {
+          
+            float yPubertyBunny = i * 4; 
+    
             // Left whiskers
-            line(x + 465, y + 546, x + 440, y + 544);
-            line(x + 465, y + 550, x + 438, y + 552);
-
+            line(x + 465, y + 546 + yPubertyBunny, x + 440, (y + 544) + (i * 8));
+    
             // Right whiskers
-            line(x + 535, y + 546, x + 560, y + 544);
-            line(x + 535, y + 550, x + 562, y + 552);
+            line(x + 535, y + 546 + yPubertyBunny, x + 560, (y + 544) + (i * 8));
+    }
 
             // arms
             fill(255);
@@ -283,17 +293,21 @@ public class Sketch extends PApplet {
             // whiskers
             stroke(50);
             strokeWeight(1.2f);
+           
+           
+           for (int i = 0; i < 3; i++) {
+            
+            float yTeenBunny = i * 5;
+    
             // Left whiskers
-            line(x + 468, y + 488, x + 420, y + 482);
-            line(x + 468, y + 493, x + 415, y + 493);
-            line(x + 468, y + 498, x + 422, y + 504);
+            line(x + 468, y + 488 + yTeenBunny, x + 420 - (i * 5), (y + 482) + (i * 11));
+    
             // Right whiskers
-            line(x + 532, y + 488, x + 580, y + 482);
-            line(x + 532, y + 493, x + 585, y + 493);
-            line(x + 532, y + 498, x + 578, y + 504);
+            line(x + 532, y + 488 + yTeenBunny, x + 580 + (i * 5), (y + 482) + (i * 11));
+        
         }
     }
-
+}
 
     public void drawAdultBunny() {
         if (bunnyStage.equals("Adult")) {
@@ -339,15 +353,16 @@ public class Sketch extends PApplet {
             stroke(30);
             strokeWeight(1.8f);
 
-            // Left whiskers
-            line(x + 460, y + 420, x + 380, y + 410);
-            line(x + 460, y + 425, x + 375, y + 425);
-            line(x + 460, y + 430, x + 385, y + 440);
+          for (int i = 0; i < 3; i++) {
+    
+        float yAdultBunny = i * 5;
 
-            // Right whiskers
-            line(x + 540, y + 420, x + 620, y + 410);
-            line(x + 540, y + 425, x + 625, y + 425);
-            line(x + 540, y + 430, x + 615, y + 440);
+        // Left whiskers
+        line(x + 460, y + 420 + yAdultBunny, x + 380 - (i * 5), (y + 410) + (i * 15));
+
+        // Right whiskers
+        line(x + 540, y + 420 + yAdultBunny, x + 620 + (i * 5), (y + 410) + (i * 15));
+}
 
             // mouth
             noFill();
@@ -364,33 +379,34 @@ public class Sketch extends PApplet {
             
             if (bunnyStage.equals("Baby") && clicks >= childStage) {
                 clicks -= childStage;   
-                bunnyStage = "Child";           
+                bunnyStage = stageName[1];         
                 clicksRequired = pubertyStage; 
             }
             else if (bunnyStage.equals("Child") && clicks >= pubertyStage) {
 
                 clicks -= pubertyStage;        
-                bunnyStage = "Puberty";
+                bunnyStage = stageName[2];         
+
                 clicksRequired = teenStage;     
             }
 
             else if (bunnyStage.equals("Puberty") && clicks >= teenStage) {
 
                 clicks -= teenStage;            
-                bunnyStage = "Teen";
+                bunnyStage = stageName[3];         
                 clicksRequired = adultStage;    
             }
 
             else if (bunnyStage.equals("Teen") && clicks >= adultStage) {
 
                 clicks -= adultStage;           
-                bunnyStage = "Adult";
+                bunnyStage = stageName[4];         
                 clicksRequired = reverseStage;         
             }
 
             else if (bunnyStage.equals("Adult")) {
                 clicks = 0;
-                bunnyStage = "Baby";
+                bunnyStage = stageName[0];         
                 clicksRequired = childStage;
             }
             
@@ -400,9 +416,14 @@ public class Sketch extends PApplet {
         }
     }
 
+
+    public void keyPressed() {
+        
+    }
+
     public void transformButton() {
         fill(0);
         rect(750, 450, 300, 150);
 
     }
-} 
+}
