@@ -36,6 +36,9 @@ public class Sketch extends PApplet {
     int currentColorIndex = 0;
 
 
+    ArrayList<Integer> leftOver = new ArrayList<Integer>();
+
+
 
 
     @Override
@@ -85,6 +88,15 @@ public class Sketch extends PApplet {
         fill(0);
         textSize(20);
         text("Clicks Required: " + clicksRequired, 750, 425);
+
+
+        fill(0);
+        textSize(16);
+        
+        for (int i = 0; i < leftOver.size(); i++) {
+            int savedScore = leftOver.get(i);
+            text("- Evolved to " + stageName[i + 1] + " (Leftover Clicks: " + savedScore + ")", 750, 200 + (i * 30));
+        }
 
         }
 
@@ -392,12 +404,15 @@ public class Sketch extends PApplet {
       if (mouseX >= 750 && mouseX <= 1050 && mouseY >= 450 && mouseY <= 600) {
             
             if (bunnyStage.equals("Baby") && clicks >= childStage) {
+
+                leftOver.add(clicks - childStage);
                 clicks -= childStage;   
                 bunnyStage = stageName[1];         
                 clicksRequired = pubertyStage; 
             }
             else if (bunnyStage.equals("Child") && clicks >= pubertyStage) {
-
+                
+                leftOver.add(clicks - pubertyStage);
                 clicks -= pubertyStage;        
                 bunnyStage = stageName[2];         
 
@@ -406,6 +421,7 @@ public class Sketch extends PApplet {
 
             else if (bunnyStage.equals("Puberty") && clicks >= teenStage) {
 
+                leftOver.add(clicks - teenStage);
                 clicks -= teenStage;            
                 bunnyStage = stageName[3];         
                 clicksRequired = adultStage;    
@@ -413,12 +429,15 @@ public class Sketch extends PApplet {
 
             else if (bunnyStage.equals("Teen") && clicks >= adultStage) {
 
+                leftOver.add(clicks - adultStage);
                 clicks -= adultStage;           
                 bunnyStage = stageName[4];         
                 clicksRequired = reverseStage;         
             }
 
             else if (bunnyStage.equals("Adult")) {
+                
+                leftOver.clear();
                 clicks = 0;
                 bunnyStage = stageName[0];         
                 clicksRequired = childStage;
