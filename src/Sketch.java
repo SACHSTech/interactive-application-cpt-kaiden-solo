@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import java.util.ArrayList;
 
 /**
  * Template for programs with Processing graphics output.
@@ -28,9 +29,11 @@ public class Sketch extends PApplet {
     
 
     int stage = 0;
-
     int clicksRequired = 10;
 
+    // Array list 
+    ArrayList<Integer> bunnyColors = new ArrayList<Integer>();
+    int currentColorIndex = 0;
 
 
 
@@ -43,6 +46,13 @@ public class Sketch extends PApplet {
     @Override
     public void setup() {
         
+        bunnyColors.add(color(255, 255, 255));  // white
+        bunnyColors.add(color(255, 0, 0));  // Red
+        bunnyColors.add(color(255, 255, 0));  // Yellow
+        bunnyColors.add(color(0, 255, 0));  // Green
+        bunnyColors.add(color(0, 0, 255));  // Blue
+
+
 
     }
 
@@ -85,7 +95,7 @@ public class Sketch extends PApplet {
         if (bunnyStage.equals("Baby")) {
 
             // Tail and body
-            fill(255, 255, 255); 
+            fill(bunnyColors.get(currentColorIndex)); 
             stroke(0);
             strokeWeight(2);
             circle(x + 465, y + 690, 16);
@@ -97,7 +107,7 @@ public class Sketch extends PApplet {
             ellipse(x + 510, y + 615, 12, 40);
 
             // Head
-            fill(255, 255, 255);
+            fill(bunnyColors.get(currentColorIndex));
             circle(x + 500, y + 650, 45);
             
             // eyes
@@ -124,14 +134,14 @@ public class Sketch extends PApplet {
     public void drawChildBunny() {
         if (bunnyStage.equals("Child")) {
             // Tail and Body
-            fill(255, 255, 255); 
+            fill(bunnyColors.get(currentColorIndex)); 
             stroke(0); 
             strokeWeight(2);
             circle(x + 450, y + 660, 22);
             ellipse(x + 500, y + 650, 80, 70);
             
             // Paws
-            fill(255);
+            fill(bunnyColors.get(currentColorIndex));
             ellipse(x + 515, y + 680, 14, 10);
             ellipse(x + 485, y + 680, 14, 10);
 
@@ -142,7 +152,7 @@ public class Sketch extends PApplet {
             ellipse(x + 515, y + 560, 16, 60);
             
             // Head
-            fill(255, 255, 255); 
+            fill(bunnyColors.get(currentColorIndex)); 
             circle(x + 500, y + 600, 65);
             
             //  eyes
@@ -161,7 +171,7 @@ public class Sketch extends PApplet {
 
 
             // Arms
-            fill(255);
+            fill(bunnyColors.get(currentColorIndex));
             ellipse(x + 475, y + 655, 16, 12);
             ellipse(x + 525, y + 655, 16, 12);
         }
@@ -171,8 +181,9 @@ public class Sketch extends PApplet {
 
     public void drawPubertyBunny() {
         if (bunnyStage.equals("Puberty")) {
+
             // Tail and Body
-            fill(255, 255, 255); 
+            fill(bunnyColors.get(currentColorIndex)); 
             stroke(0); 
             strokeWeight(2);
             circle(x + 435, y + 620, 26);
@@ -184,7 +195,7 @@ public class Sketch extends PApplet {
             ellipse(x + 520, y + 490, 20, 80);
             
             // Head
-            fill(255, 255, 255);
+            fill(bunnyColors.get(currentColorIndex));
             circle(x + 500, y + 540, 85);
             
             // eyes
@@ -212,7 +223,7 @@ public class Sketch extends PApplet {
     }
 
             // arms
-            fill(255);
+            fill(bunnyColors.get(currentColorIndex));
             ellipse(x + 460, y + 620, 16, 25);
             ellipse(x + 540, y + 620, 16, 25);
 
@@ -224,7 +235,7 @@ public class Sketch extends PApplet {
             
 
             // legs
-            fill(255);
+            fill(bunnyColors.get(currentColorIndex));
             ellipse(x + 465, y + 658, 24, 14); // Left leg
             ellipse(x + 535, y + 658, 24, 14); // Right leg
         }
@@ -233,8 +244,9 @@ public class Sketch extends PApplet {
 
     public void drawTeenBunny() {
         if (bunnyStage.equals("Teen")) {
+
             // Tail and body
-            fill(255, 255, 255); 
+            fill(bunnyColors.get(currentColorIndex)); 
             stroke(0); 
             strokeWeight(2);
             circle(x + 420, y + 580, 32);
@@ -242,7 +254,7 @@ public class Sketch extends PApplet {
             
 
             // Arms
-            fill(255);
+            fill(bunnyColors.get(currentColorIndex));
             ellipse(x + 450, y + 580, 26, 18);
             ellipse(x + 550, y + 580, 26, 18);
 
@@ -266,7 +278,7 @@ public class Sketch extends PApplet {
             ellipse(x + 525, y + 410, 24, 110);
             
             // Head
-            fill(255, 255, 255); 
+            fill(bunnyColors.get(currentColorIndex)); 
             circle(x + 500, y + 480, 105);
             
             // eyes
@@ -280,6 +292,7 @@ public class Sketch extends PApplet {
 
 
             // legs
+            fill(bunnyColors.get(currentColorIndex));
             ellipse(x + 455, y + 630, 30, 18); // Left leg
             ellipse(x + 545, y + 630, 30, 18); // Right leg
 
@@ -311,8 +324,9 @@ public class Sketch extends PApplet {
 
     public void drawAdultBunny() {
         if (bunnyStage.equals("Adult")) {
+
             // Tail and Body
-            fill(255, 255, 255); 
+            fill(bunnyColors.get(currentColorIndex)); 
             stroke(0); 
             strokeWeight(2);
             circle(x + 400, y + 540, 40);
@@ -324,7 +338,7 @@ public class Sketch extends PApplet {
             ellipse(x + 530, y + 320, 30, 140);
             
             // Head
-            fill(255, 255, 255);
+            fill(bunnyColors.get(currentColorIndex));
             circle(x + 500, y + 410, 130);
             
             // eyes
@@ -338,13 +352,13 @@ public class Sketch extends PApplet {
 
 
             // Legs
-            fill(255);
+            fill(bunnyColors.get(currentColorIndex));
             ellipse(x + 445, y + 595, 38, 24); // Left leg
             ellipse(x + 555, y + 595, 38, 24); // Right leg
 
 
             // Arms
-            fill(255);
+            fill(bunnyColors.get(currentColorIndex));
             ellipse(x + 430, y + 530, 24, 38);
             ellipse(x + 570, y + 530, 24, 38);
 
@@ -418,7 +432,11 @@ public class Sketch extends PApplet {
 
 
     public void keyPressed() {
-        
+        currentColorIndex++;
+
+        if (currentColorIndex >= bunnyColors.size()) {
+            currentColorIndex = 0;
+        }
     }
 
     public void transformButton() {
