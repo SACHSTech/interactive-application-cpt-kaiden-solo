@@ -13,7 +13,7 @@ Once you are ready to submit, replace the contents of this README.md file with:
 
 # ICS3U1 - COMPUTER SCIENCE CPT
 
-![Bunny Simulator Screenshot](<img src="blob:chrome-untrusted://media-app/2537ab71-1bf3-4bbb-9a65-805859aa7df9" alt="Screenshot 2026-06-09 10.02.05 AM.png"/>)
+![Bunny Simulator Screenshot](bunny.png)
 
 **Description**
 - This program is a Bunny Growth Simulator that consists of different life stages (Baby, Child, Puberty, Teen, Adult), 
