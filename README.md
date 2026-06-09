@@ -10,10 +10,32 @@ Assessment criteria for this project are described in **[ASSESSMENT.md](ASSESSME
 
 Once you are ready to submit, replace the contents of this README.md file with:
 
-- a screenshot of your program in action
-- a brief description of your program
-- how the user interacts with it
-- any known limitations or incomplete features
-- an attribution section for any external assets used
 
-This README will be assessed as part of the project professionalism mark.
+# ICS3U1 - COMPUTER SCIENCE CPT
+
+![Bunny Simulator Screenshot](<img src="blob:chrome-untrusted://media-app/2537ab71-1bf3-4bbb-9a65-805859aa7df9" alt="Screenshot 2026-06-09 10.02.05 AM.png"/>)
+
+**Description**
+- This program is a Bunny Growth Simulator that consists of different life stages (Baby, Child, Puberty, Teen, Adult), 
+
+
+**User Interaction**
+
+ - This program is based off of clicks and the requried clicks, for the bunny to be able to grow and evolve into a different stages of life. Any key that is pressed will change the colour of the bunny.
+
+
+**Incomplete Features**
+- Some incomplete features was getting the bunny to jump
+
+
+**Limitations**
+- Canvas Resizing is a limitation where it affects text placement, bunny placement, change mouse boundaries in the transform button and more
+
+
+**External Assets**
+- All original artwork created by Kaiden Chan
+
+
+
+
+

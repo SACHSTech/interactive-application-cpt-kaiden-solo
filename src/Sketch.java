@@ -2,8 +2,11 @@ import processing.core.PApplet;
 import java.util.ArrayList;
 
 /**
- * Template for programs with Processing graphics output.
- * @author Your Name
+ * This program is a bunny growth simulator where it includes mouse interactivity
+ * to simulate the growth and life cycle of the bunny, and a key press interactivity
+ * to change colours of the bunny.  This program consists of loops, conditionals, arrays,
+ * user input, methods, variables/data types, expressions and more
+ * @author Kaiden Chan
  */
 
 
@@ -16,29 +19,30 @@ public class Sketch extends PApplet {
     boolean showInstructions = true;
 
 
-  // Declaring Variables
+    // Declaring x and y Variables
     int x = 50;
     int y = 50;
-    int clicks = 0;
     
     // Declaring Stages Variables
     int childStage = 10;
-    int pubertyStage = 30;
-    int teenStage = 60;
-    int adultStage = 100;
-    int reverseStage = 120;
+    int pubertyStage = 20;
+    int teenStage = 30;
+    int adultStage = 50;
+    int reverseStage = 60;
 
     String bunnyStage = "Baby";
     String[] stageName = {"Baby", "Child", "Puberty", "Teen", "Adult"};
     
-
     int stage = 0;
+
+    // Declaring Clicks Variables
+    int clicks = 0;
     int clicksRequired = 10;
+
 
     // Array list 
     ArrayList<Integer> bunnyColors = new ArrayList<Integer>();
     int currentColorIndex = 0;
-
 
     ArrayList<Integer> leftOver = new ArrayList<Integer>();
 
@@ -125,6 +129,7 @@ public class Sketch extends PApplet {
         fill(0);
         textSize(16);
 
+        // Left Over Clicks and evolve Statement
         for (int i = 0; i < leftOver.size(); i++) {
             int savedScore = leftOver.get(i);
             text("- Evolved to " + stageName[i + 1] + " (Leftover Clicks: " + savedScore + ")", 750, 200 + (i * 30));
@@ -133,6 +138,11 @@ public class Sketch extends PApplet {
     }
         
 }
+
+
+/**
+ * Draws Baby Bunny
+ */
 
 
 
@@ -175,9 +185,14 @@ public class Sketch extends PApplet {
     }
 
 
+
+/**
+ * Draws Child Bunny
+ */
     
     public void drawChildBunny() {
         if (bunnyStage.equals("Child")) {
+
             // Tail and Body
             fill(bunnyColors.get(currentColorIndex)); 
             stroke(0); 
@@ -224,6 +239,10 @@ public class Sketch extends PApplet {
 
 
 
+/**
+ * Draws Puberty Bunny
+ */
+
     public void drawPubertyBunny() {
         if (bunnyStage.equals("Puberty")) {
 
@@ -258,13 +277,13 @@ public class Sketch extends PApplet {
            
             for (int i = 0; i < 2; i++) {
           
-            float yPubertyBunny = i * 4; 
+                float yPubertyBunny = i * 4; 
     
-            // Left whiskers
-            line(x + 465, y + 546 + yPubertyBunny, x + 440, (y + 544) + (i * 8));
+                // Left whiskers
+                line(x + 465, y + 546 + yPubertyBunny, x + 440, (y + 544) + (i * 8));
     
-            // Right whiskers
-            line(x + 535, y + 546 + yPubertyBunny, x + 560, (y + 544) + (i * 8));
+                // Right whiskers
+                line(x + 535, y + 546 + yPubertyBunny, x + 560, (y + 544) + (i * 8));
     }
 
             // arms
@@ -286,6 +305,11 @@ public class Sketch extends PApplet {
         }
     }
 
+
+
+/**
+ * Draws Teen Bunny
+ */
 
     public void drawTeenBunny() {
         if (bunnyStage.equals("Teen")) {
@@ -367,6 +391,12 @@ public class Sketch extends PApplet {
     }
 }
 
+
+
+/**
+ * Draws Adult Bunny
+ */
+
     public void drawAdultBunny() {
         if (bunnyStage.equals("Adult")) {
 
@@ -414,13 +444,13 @@ public class Sketch extends PApplet {
 
           for (int i = 0; i < 3; i++) {
     
-        float yAdultBunny = i * 5;
+            float yAdultBunny = i * 5;
 
-        // Left whiskers
-        line(x + 460, y + 420 + yAdultBunny, x + 380 - (i * 5), (y + 410) + (i * 15));
+            // Left whiskers
+            line(x + 460, y + 420 + yAdultBunny, x + 380 - (i * 5), (y + 410) + (i * 15));
 
-        // Right whiskers
-        line(x + 540, y + 420 + yAdultBunny, x + 620 + (i * 5), (y + 410) + (i * 15));
+            // Right whiskers
+            line(x + 540, y + 420 + yAdultBunny, x + 620 + (i * 5), (y + 410) + (i * 15));
 }
 
             // mouth
@@ -433,14 +463,22 @@ public class Sketch extends PApplet {
 
 
 
+
+/**
+ * When mouse is pressed on the instructions page, transform box, everywhere else
+ * around it.  Tracks the amount of clicks, the clicks leftover and the bunny
+ * stage.
+ */
+
     public void mousePressed() {
 
+        // Instructions 
         if (showInstructions) {
             showInstructions = false;
             return;
         }
 
-
+      // Boundaries of transform button
       if (mouseX >= 750 && mouseX <= 1050 && mouseY >= 450 && mouseY <= 600) {
             
             if (bunnyStage.equals("Baby") && clicks >= childStage) {
@@ -488,10 +526,13 @@ public class Sketch extends PApplet {
             clicks++;
         }
 
-
-    
     }
 
+
+
+/**
+ * When Key is pressed, bunny changes colours
+ */
 
     public void keyPressed() {
         currentColorIndex++;
