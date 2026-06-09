@@ -12,6 +12,10 @@ public class Sketch extends PApplet {
         PApplet.main("Sketch");
     }
 
+    // Declaring Instructions Page Variables
+    boolean showInstructions = true;
+
+
   // Declaring Variables
     int x = 50;
     int y = 50;
@@ -61,9 +65,37 @@ public class Sketch extends PApplet {
 
     @Override
     public void draw() {
-        background(135, 206, 235);
 
+        if (showInstructions) {
+            background(40, 44, 52); 
+
+            fill(135, 206, 235); 
+            textAlign(CENTER);
+            textSize(50);
+            text("Bunny Growth Simulator", width / 2, 200);
+
+            fill(255);
+            textSize(30);
+            text("INSTRUCTIONS", width / 2, 300);
+    
+            textSize(20);
+            fill(220);
+            text("1. Click anywhere on the screen (except the transform button) to gain Clicks.", width / 2, 370);
+            text("2. When you reach the 'Clicks Required', click the black 'Transform' box to evolve.", width / 2, 420);
+            text("3. Press any key on your keyboard to change the bunny's colors.", width / 2, 470);
+
+            fill(0, 255, 150);
+            textSize(26);
+            text("CLICK ANYWHERE TO START :)", width / 2, 650);
+    
+            // Reset allignment
+            textAlign(LEFT);
+
+    }
+    
+    else {
         
+        background(135, 206, 235);
 
         drawBabyBunny();
         drawChildBunny();
@@ -92,14 +124,15 @@ public class Sketch extends PApplet {
 
         fill(0);
         textSize(16);
-        
+
         for (int i = 0; i < leftOver.size(); i++) {
             int savedScore = leftOver.get(i);
             text("- Evolved to " + stageName[i + 1] + " (Leftover Clicks: " + savedScore + ")", 750, 200 + (i * 30));
         }
 
-        }
-
+    }
+        
+}
 
 
 
@@ -401,6 +434,13 @@ public class Sketch extends PApplet {
 
 
     public void mousePressed() {
+
+        if (showInstructions) {
+            showInstructions = false;
+            return;
+        }
+
+
       if (mouseX >= 750 && mouseX <= 1050 && mouseY >= 450 && mouseY <= 600) {
             
             if (bunnyStage.equals("Baby") && clicks >= childStage) {
@@ -447,6 +487,9 @@ public class Sketch extends PApplet {
             // clicked outside the box
             clicks++;
         }
+
+
+    
     }
 
 
