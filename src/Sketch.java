@@ -19,11 +19,11 @@ public class Sketch extends PApplet {
     boolean showInstructions = true;
 
 
-    // Declaring x and y Variables
+    // Declaring x and y variables
     int x = 50;
     int y = 50;
     
-    // Declaring Stages Variables
+    // Declaring Stages variables
     int childStage = 10;
     int pubertyStage = 20;
     int teenStage = 30;
